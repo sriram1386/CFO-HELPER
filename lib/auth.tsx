@@ -15,6 +15,8 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>
   signup: (email: string, password: string, name: string) => Promise<boolean>
   logout: () => void
+  updateProfile: (updates: Partial<Pick<User, "name" | "email">>) => Promise<void>
+  changePassword: (current: string, next: string) => Promise<boolean>
   loading: boolean
 }
 
@@ -68,7 +70,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("cfo-user")
   }
 
-  return <AuthContext.Provider value={{ user, login, signup, logout, loading }}>{children}</AuthContext.Provider>
+  const updateProfile = async (updates: Partial<Pick<User, "name" | "email">>) => {
+    setUser((prev) => {
+      if (!prev) return prev
+      const nextUser = { ...prev, ...updates }
+      localStorage.setItem("cfo-user", JSON.stringify(nextUser))
+      return nextUser
+    })
+  }
+
+  const changePassword = async (current: string, next: string): Promise<boolean> => {
+    // Mock success if next is long enough
+    return Boolean(current) && next.length >= 6
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, login, signup, logout, updateProfile, changePassword, loading }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth() {

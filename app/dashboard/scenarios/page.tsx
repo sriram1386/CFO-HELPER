@@ -79,8 +79,8 @@ export default function ScenariosPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">Scenario Planning</h1>
-        <p className="text-slate-600 mt-1">Test different business scenarios and see their financial impact.</p>
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Scenario Planning</h1>
+        <p className="text-slate-600 dark:text-slate-300 mt-1">Test different business scenarios and see their financial impact.</p>
       </div>
 
       {/* Quick Scenarios */}
@@ -99,7 +99,7 @@ export default function ScenariosPage() {
                 onClick={() => applyQuickScenario(scenario)}
               >
                 <div className="font-medium">{scenario.name}</div>
-                <div className="text-sm text-slate-500 mt-1">
+                <div className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                   ${scenario.inputs.revenue.toLocaleString()}/mo • {scenario.inputs.teamSize} people
                 </div>
               </Button>
@@ -122,26 +122,42 @@ export default function ScenariosPage() {
             <div className="space-y-4">
               <div className="space-y-3">
                 <Label>Monthly Revenue: ${inputs.revenue.toLocaleString()}</Label>
-                <Slider
-                  value={[inputs.revenue]}
-                  onValueChange={(value) => setInputs({ ...inputs, revenue: value[0] })}
-                  max={500000}
-                  min={10000}
-                  step={5000}
-                  className="w-full"
-                />
+                <div className="flex gap-2">
+                  <Slider
+                    value={[inputs.revenue]}
+                    onValueChange={(value) => setInputs({ ...inputs, revenue: value[0] })}
+                    max={500000}
+                    min={10000}
+                    step={5000}
+                    className="w-full"
+                  />
+                  <Input
+                    type="number"
+                    value={inputs.revenue}
+                    onChange={(e) => setInputs({ ...inputs, revenue: Number(e.target.value) || 0 })}
+                    className="w-36"
+                  />
+                </div>
               </div>
 
               <div className="space-y-3">
                 <Label>Team Size: {inputs.teamSize} people</Label>
-                <Slider
-                  value={[inputs.teamSize]}
-                  onValueChange={(value) => setInputs({ ...inputs, teamSize: value[0] })}
-                  max={100}
-                  min={1}
-                  step={1}
-                  className="w-full"
-                />
+                <div className="flex gap-2">
+                  <Slider
+                    value={[inputs.teamSize]}
+                    onValueChange={(value) => setInputs({ ...inputs, teamSize: value[0] })}
+                    max={100}
+                    min={1}
+                    step={1}
+                    className="w-full"
+                  />
+                  <Input
+                    type="number"
+                    value={inputs.teamSize}
+                    onChange={(e) => setInputs({ ...inputs, teamSize: Number(e.target.value) || 0 })}
+                    className="w-36"
+                  />
+                </div>
                 <div className="text-sm text-slate-500">
                   Estimated cost: ${(inputs.teamSize * (inputs.averageSalary || 8000)).toLocaleString()}/mo
                 </div>
@@ -149,38 +165,62 @@ export default function ScenariosPage() {
 
               <div className="space-y-3">
                 <Label>Marketing Budget: ${inputs.marketingBudget.toLocaleString()}</Label>
-                <Slider
-                  value={[inputs.marketingBudget]}
-                  onValueChange={(value) => setInputs({ ...inputs, marketingBudget: value[0] })}
-                  max={100000}
-                  min={1000}
-                  step={1000}
-                  className="w-full"
-                />
+                <div className="flex gap-2">
+                  <Slider
+                    value={[inputs.marketingBudget]}
+                    onValueChange={(value) => setInputs({ ...inputs, marketingBudget: value[0] })}
+                    max={100000}
+                    min={1000}
+                    step={1000}
+                    className="w-full"
+                  />
+                  <Input
+                    type="number"
+                    value={inputs.marketingBudget}
+                    onChange={(e) => setInputs({ ...inputs, marketingBudget: Number(e.target.value) || 0 })}
+                    className="w-36"
+                  />
+                </div>
               </div>
 
               <div className="space-y-3">
                 <Label>Operational Costs: ${inputs.operationalCosts.toLocaleString()}</Label>
-                <Slider
-                  value={[inputs.operationalCosts]}
-                  onValueChange={(value) => setInputs({ ...inputs, operationalCosts: value[0] })}
-                  max={200000}
-                  min={5000}
-                  step={2500}
-                  className="w-full"
-                />
+                <div className="flex gap-2">
+                  <Slider
+                    value={[inputs.operationalCosts]}
+                    onValueChange={(value) => setInputs({ ...inputs, operationalCosts: value[0] })}
+                    max={200000}
+                    min={5000}
+                    step={2500}
+                    className="w-full"
+                  />
+                  <Input
+                    type="number"
+                    value={inputs.operationalCosts}
+                    onChange={(e) => setInputs({ ...inputs, operationalCosts: Number(e.target.value) || 0 })}
+                    className="w-36"
+                  />
+                </div>
               </div>
 
               <div className="space-y-3">
                 <Label>Average Salary: ${(inputs.averageSalary || 8000).toLocaleString()}/mo</Label>
-                <Slider
-                  value={[inputs.averageSalary || 8000]}
-                  onValueChange={(value) => setInputs({ ...inputs, averageSalary: value[0] })}
-                  max={15000}
-                  min={3000}
-                  step={500}
-                  className="w-full"
-                />
+                <div className="flex gap-2">
+                  <Slider
+                    value={[inputs.averageSalary || 8000]}
+                    onValueChange={(value) => setInputs({ ...inputs, averageSalary: value[0] })}
+                    max={15000}
+                    min={3000}
+                    step={500}
+                    className="w-full"
+                  />
+                  <Input
+                    type="number"
+                    value={inputs.averageSalary || 8000}
+                    onChange={(e) => setInputs({ ...inputs, averageSalary: Number(e.target.value) || 0 })}
+                    className="w-36"
+                  />
+                </div>
               </div>
             </div>
 
@@ -209,42 +249,42 @@ export default function ScenariosPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-slate-50 rounded-lg">
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="h-4 w-4 text-green-600" />
-                  <span className="text-sm font-medium">Monthly Profit</span>
+                  <span className="text-sm font-medium dark:text-slate-300">Monthly Profit</span>
                 </div>
                 <div className={`text-xl font-bold ${metrics.monthlyProfit >= 0 ? "text-green-600" : "text-red-600"}`}>
                   ${metrics.monthlyProfit.toLocaleString()}
                 </div>
               </div>
 
-              <div className="p-4 bg-slate-50 rounded-lg">
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="h-4 w-4 text-blue-600" />
-                  <span className="text-sm font-medium">Profit Margin</span>
+                  <span className="text-sm font-medium dark:text-slate-300">Profit Margin</span>
                 </div>
                 <div className={`text-xl font-bold ${metrics.profitMargin >= 0 ? "text-green-600" : "text-red-600"}`}>
                   {metrics.profitMargin.toFixed(1)}%
                 </div>
               </div>
 
-              <div className="p-4 bg-slate-50 rounded-lg">
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-4 w-4 text-purple-600" />
-                  <span className="text-sm font-medium">Cash Runway</span>
+                  <span className="text-sm font-medium dark:text-slate-300">Cash Runway</span>
                 </div>
-                <div className="text-xl font-bold text-slate-900">
+                <div className="text-xl font-bold text-slate-900 dark:text-slate-100">
                   {typeof metrics.cashRunway === "string" ? metrics.cashRunway : `${metrics.cashRunway}M`}
                 </div>
               </div>
 
-              <div className="p-4 bg-slate-50 rounded-lg">
+              <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingUp className="h-4 w-4 text-orange-600" />
-                  <span className="text-sm font-medium">Break-even</span>
+                  <span className="text-sm font-medium dark:text-slate-300">Break-even</span>
                 </div>
-                <div className="text-xl font-bold text-slate-900">${breakEven.breakEvenRevenue.toLocaleString()}</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-slate-100">${breakEven.breakEvenRevenue.toLocaleString()}</div>
               </div>
             </div>
 
@@ -284,7 +324,7 @@ export default function ScenariosPage() {
         <CardContent>
           <div className="space-y-3">
             {insights.map((insight, index) => (
-              <div key={index} className="p-3 bg-slate-50 rounded-lg text-sm">
+              <div key={index} className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg text-sm">
                 {insight}
               </div>
             ))}

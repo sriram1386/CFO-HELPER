@@ -49,12 +49,12 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-200 dark:from-slate-950 dark:to-slate-900 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <BarChart3 className="h-8 w-8 text-slate-900" />
-            <span className="text-xl font-bold text-slate-900">CFO Helper</span>
+            <BarChart3 className="h-8 w-8 text-slate-900 dark:text-slate-100" />
+            <span className="text-xl font-bold text-slate-900 dark:text-slate-100">CFO Helper</span>
           </div>
           <CardTitle>Create Account</CardTitle>
           <CardDescription>Get started with your financial planning journey</CardDescription>
@@ -120,9 +120,9 @@ export default function SignupPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-slate-600 dark:text-slate-300">
               Already have an account?{" "}
-              <Link href="/login" className="text-slate-900 font-medium hover:underline">
+              <Link href="/login" className="text-slate-900 dark:text-slate-100 font-medium hover:underline">
                 Sign in
               </Link>
             </p>

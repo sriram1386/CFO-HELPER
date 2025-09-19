@@ -36,7 +36,7 @@ export default function DemoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-200 dark:from-slate-950 dark:to-slate-900">
       {/* Navigation */}
       <nav className="border-b bg-white/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,7 +45,7 @@ export default function DemoPage() {
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Link>
-            <Badge variant="secondary">Demo Mode</Badge>
+            <Badge className="bg-indigo-500 text-white">Demo Mode</Badge>
           </div>
         </div>
       </nav>

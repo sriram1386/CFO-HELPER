@@ -47,8 +47,12 @@ export default function DashboardOverview() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">Welcome back, {user?.name}!</h1>
-        <p className="text-slate-600 mt-1">Here's what's happening with your business finances.</p>
+        <h1 className="text-3xl font-bold selection:bg-indigo-500 selection:text-white">
+          Welcome back, {user?.name}!
+        </h1>
+        <p className="text-slate-700 dark:text-indigo-300 mt-1 selection:bg-indigo-500 selection:text-white">
+          Here's what's happening with your business finances.
+        </p>
       </div>
 
       {/* Key Metrics */}
@@ -57,8 +61,8 @@ export default function DashboardOverview() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Monthly Revenue</p>
-                <p className="text-2xl font-bold text-slate-900">${metrics.monthlyRevenue.toLocaleString()}</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Monthly Revenue</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">${metrics.monthlyRevenue.toLocaleString()}</p>
               </div>
               <DollarSign className="h-8 w-8 text-green-600" />
             </div>
@@ -69,7 +73,7 @@ export default function DashboardOverview() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Monthly Profit</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Monthly Profit</p>
                 <p className={`text-2xl font-bold ${metrics.monthlyProfit >= 0 ? "text-green-600" : "text-red-600"}`}>
                   ${metrics.monthlyProfit.toLocaleString()}
                 </p>
@@ -87,8 +91,8 @@ export default function DashboardOverview() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Cash Runway</p>
-                <p className="text-2xl font-bold text-slate-900">{metrics.cashRunway}</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Cash Runway</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{metrics.cashRunway}</p>
               </div>
               <Calendar className="h-8 w-8 text-blue-600" />
             </div>
@@ -99,7 +103,7 @@ export default function DashboardOverview() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Profit Margin</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Profit Margin</p>
                 <p className={`text-2xl font-bold ${metrics.profitMargin >= 0 ? "text-green-600" : "text-red-600"}`}>
                   {metrics.profitMargin.toFixed(1)}%
                 </p>
@@ -114,8 +118,8 @@ export default function DashboardOverview() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Revenue Trend</CardTitle>
-            <CardDescription>6-month revenue projection</CardDescription>
+            <CardTitle className="dark:text-slate-100">Revenue Trend</CardTitle>
+            <CardDescription className="dark:text-slate-400">6-month revenue projection</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={200}>
@@ -132,8 +136,8 @@ export default function DashboardOverview() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Profit Forecast</CardTitle>
-            <CardDescription>6-month profit projection</CardDescription>
+            <CardTitle className="dark:text-slate-100">Profit Forecast</CardTitle>
+            <CardDescription className="dark:text-slate-400">6-month profit projection</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={200}>
@@ -153,8 +157,8 @@ export default function DashboardOverview() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Jump into your most used features</CardDescription>
+            <CardTitle className="dark:text-slate-100">Quick Actions</CardTitle>
+            <CardDescription className="dark:text-slate-400">Jump into your most used features</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <Link href="/dashboard/scenarios">
@@ -189,15 +193,15 @@ export default function DashboardOverview() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Your latest financial planning activities</CardDescription>
+            <CardTitle className="dark:text-slate-100">Recent Activity</CardTitle>
+            <CardDescription className="dark:text-slate-400">Your latest financial planning activities</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {recentActivity.map((activity, index) => (
                 <div key={index} className="flex justify-between items-center py-2">
-                  <span className="text-sm text-slate-900">{activity.action}</span>
-                  <span className="text-xs text-slate-500">{activity.time}</span>
+                  <span className="text-sm text-slate-900 dark:text-slate-100">{activity.action}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">{activity.time}</span>
                 </div>
               ))}
             </div>
@@ -208,35 +212,35 @@ export default function DashboardOverview() {
       {/* Usage Stats */}
       <Card>
         <CardHeader>
-          <CardTitle>Usage Statistics</CardTitle>
-          <CardDescription>Track your financial planning activity</CardDescription>
+          <CardTitle className="dark:text-slate-100">Usage Statistics</CardTitle>
+          <CardDescription className="dark:text-slate-400">Track your financial planning activity</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-slate-900">{usageStats.scenariosThisMonth}</div>
-              <div className="text-sm text-slate-600">Scenarios Run</div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-slate-100">{usageStats.scenariosThisMonth}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">Scenarios Run</div>
               <Badge variant="secondary" className="mt-1">
                 This Month
               </Badge>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-slate-900">{usageStats.reportsThisMonth}</div>
-              <div className="text-sm text-slate-600">Reports Generated</div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-slate-100">{usageStats.reportsThisMonth}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">Reports Generated</div>
               <Badge variant="secondary" className="mt-1">
                 This Month
               </Badge>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-slate-900">{usageStats.totalScenarios}</div>
-              <div className="text-sm text-slate-600">Total Scenarios</div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-slate-100">{usageStats.totalScenarios}</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">Total Scenarios</div>
               <Badge variant="secondary" className="mt-1">
                 All Time
               </Badge>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-slate-900">{metrics.profitMargin.toFixed(1)}%</div>
-              <div className="text-sm text-slate-600">Profit Margin</div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-slate-100">{metrics.profitMargin.toFixed(1)}%</div>
+              <div className="text-sm text-slate-600 dark:text-slate-400">Profit Margin</div>
               <Badge variant="secondary" className="mt-1">
                 Current
               </Badge>

@@ -38,10 +38,19 @@ export default function ForecastsPage() {
   const totalCosts = baseData.teamCosts + baseData.marketingBudget + baseData.operationalCosts
 
   // Generate forecast data based on selected parameters
-  const generateForecastData = () => {
+  type ForecastMonth = {
+    month: string
+    monthNum: number
+    revenue: number
+    costs: number
+    profit: number
+    cumulativeProfit: number
+  }
+
+  const generateForecastData = (): ForecastMonth[] => {
     const months = Number.parseInt(timeframe)
     const growth = Number.parseFloat(growthRate) / 100
-    const data = []
+    const data: ForecastMonth[] = []
 
     for (let i = 0; i < months; i++) {
       const revenueGrowth =
@@ -102,8 +111,8 @@ export default function ForecastsPage() {
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Financial Forecasts</h1>
-          <p className="text-slate-600 mt-1">Visualize your business financial projections and trends.</p>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Financial Forecasts</h1>
+          <p className="text-slate-600 dark:text-slate-300 mt-1">Visualize your business financial projections and trends.</p>
         </div>
         <Button onClick={exportForecast} className="flex items-center gap-2">
           <Download className="h-4 w-4" />
@@ -114,13 +123,13 @@ export default function ForecastsPage() {
       {/* Controls */}
       <Card>
         <CardHeader>
-          <CardTitle>Forecast Parameters</CardTitle>
-          <CardDescription>Adjust the parameters to customize your financial forecast</CardDescription>
+          <CardTitle className="dark:text-slate-100">Forecast Parameters</CardTitle>
+          <CardDescription className="dark:text-slate-400">Adjust the parameters to customize your financial forecast</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Time Frame</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Time Frame</label>
               <Select value={timeframe} onValueChange={setTimeframe}>
                 <SelectTrigger>
                   <SelectValue />
@@ -135,7 +144,7 @@ export default function ForecastsPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">Monthly Growth Rate</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Monthly Growth Rate</label>
               <Select value={growthRate} onValueChange={setGrowthRate}>
                 <SelectTrigger>
                   <SelectValue />
@@ -150,7 +159,7 @@ export default function ForecastsPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">Scenario Type</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Scenario Type</label>
               <Select value={scenario} onValueChange={setScenario}>
                 <SelectTrigger>
                   <SelectValue />
@@ -172,8 +181,8 @@ export default function ForecastsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Total Revenue</p>
-                <p className="text-2xl font-bold text-slate-900">${totalRevenue.toLocaleString()}</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Revenue</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">${totalRevenue.toLocaleString()}</p>
                 <p className="text-xs text-slate-500">{timeframe} months</p>
               </div>
               <DollarSign className="h-8 w-8 text-green-600" />
@@ -185,7 +194,7 @@ export default function ForecastsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Total Profit</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Total Profit</p>
                 <p className={`text-2xl font-bold ${totalProfit >= 0 ? "text-green-600" : "text-red-600"}`}>
                   ${totalProfit.toLocaleString()}
                 </p>
@@ -200,8 +209,8 @@ export default function ForecastsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Avg Growth</p>
-                <p className="text-2xl font-bold text-slate-900">{avgMonthlyGrowth.toFixed(1)}%</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Avg Growth</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{avgMonthlyGrowth.toFixed(1)}%</p>
                 <p className="text-xs text-slate-500">per month</p>
               </div>
               <Target className="h-8 w-8 text-purple-600" />
@@ -213,8 +222,8 @@ export default function ForecastsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">Final Month</p>
-                <p className="text-2xl font-bold text-slate-900">${finalMonth.revenue.toLocaleString()}</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Final Month</p>
+                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">${finalMonth.revenue.toLocaleString()}</p>
                 <p className="text-xs text-slate-500">revenue</p>
               </div>
               <Calendar className="h-8 w-8 text-orange-600" />
@@ -227,8 +236,8 @@ export default function ForecastsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Revenue vs Costs Forecast</CardTitle>
-            <CardDescription>Monthly revenue and cost projections</CardDescription>
+            <CardTitle className="dark:text-slate-100">Revenue vs Costs Forecast</CardTitle>
+            <CardDescription className="dark:text-slate-400">Monthly revenue and cost projections</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -246,8 +255,8 @@ export default function ForecastsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Profit Trend</CardTitle>
-            <CardDescription>Monthly and cumulative profit over time</CardDescription>
+            <CardTitle className="dark:text-slate-100">Profit Trend</CardTitle>
+            <CardDescription className="dark:text-slate-400">Monthly and cumulative profit over time</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -271,8 +280,8 @@ export default function ForecastsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Revenue Growth Area</CardTitle>
-            <CardDescription>Revenue growth visualization over time</CardDescription>
+            <CardTitle className="dark:text-slate-100">Revenue Growth Area</CardTitle>
+            <CardDescription className="dark:text-slate-400">Revenue growth visualization over time</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -289,8 +298,8 @@ export default function ForecastsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Cost Breakdown</CardTitle>
-            <CardDescription>Current monthly cost distribution</CardDescription>
+            <CardTitle className="dark:text-slate-100">Cost Breakdown</CardTitle>
+            <CardDescription className="dark:text-slate-400">Current monthly cost distribution</CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -329,8 +338,8 @@ export default function ForecastsPage() {
       {/* Forecast Summary */}
       <Card>
         <CardHeader>
-          <CardTitle>Forecast Summary</CardTitle>
-          <CardDescription>Key insights from your financial forecast</CardDescription>
+          <CardTitle className="dark:text-slate-100">Forecast Summary</CardTitle>
+          <CardDescription className="dark:text-slate-400">Key insights from your financial forecast</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

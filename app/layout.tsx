@@ -1,19 +1,14 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 import { AuthProvider } from "@/lib/auth"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
+const geistSans = GeistSans
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
+const geistMono = GeistMono
 
 export const metadata: Metadata = {
   title: "CFO Helper Agent",

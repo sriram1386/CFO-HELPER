@@ -8,6 +8,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { SiteNavbar } from "@/components/navbar"
 
 export default function HomePage() {
   const { user, loading } = useAuth()
@@ -28,27 +29,9 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-200 dark:from-slate-950 dark:to-slate-900">
       {/* Navigation */}
-      <nav className="border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-              <BarChart3 className="h-8 w-8 text-slate-900 dark:text-slate-100" />
-              <span className="text-xl font-bold text-slate-900 dark:text-slate-100">CFO Helper</span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <ThemeToggle />
-              <Link href="/login">
-                <Button variant="ghost">Login</Button>
-              </Link>
-              <Link href="/signup">
-                <Button>Get Started</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <SiteNavbar />
 
       {/* Hero Section */}
       <section className="py-20 px-4">
@@ -63,7 +46,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/signup">
               <Button size="lg" className="flex items-center gap-2">
-                Start Free Trial
+                Get Started
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -92,9 +75,9 @@ export default function HomePage() {
             <Card className="border-0 shadow-lg dark:bg-slate-700">
               <CardHeader>
                 <TrendingUp className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle className="dark:text-slate-100">Scenario Planning</CardTitle>
-                <CardDescription className="dark:text-slate-300">
-                  Test different business scenarios with interactive sliders and see real-time impact on your finances.
+                <CardTitle className="text-indigo-700 dark:text-indigo-300">Scenario Planning</CardTitle>
+                <CardDescription className="text-slate-700 dark:text-slate-300">
+                  Test different business scenarios and see their financial impact in real time.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -123,7 +106,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-slate-900 dark:bg-slate-950">
+      <section className="py-20 px-4 bg-indigo-700 dark:bg-indigo-800">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Take Control of Your Finances?</h2>
           <p className="text-xl text-slate-300 mb-8">
@@ -131,7 +114,7 @@ export default function HomePage() {
           </p>
           <Link href="/signup">
             <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
-              Start Your Free Trial
+              Get Started
             </Button>
           </Link>
         </div>

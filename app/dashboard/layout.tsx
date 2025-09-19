@@ -1,6 +1,6 @@
 import type React from "react"
 import AuthGuard from "@/components/dashboard/auth-guard"
-import Sidebar from "@/components/dashboard/sidebar"
+import DashboardTopbar from "@/components/dashboard/topbar"
 
 export default function DashboardLayout({
   children,
@@ -9,9 +9,9 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 lg:flex">
-        <Sidebar />
-        <main className="flex-1 lg:pl-0 pt-16 lg:pt-0">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-200 dark:from-slate-950 dark:to-slate-900">
+        <DashboardTopbar />
+        <main className="flex-1">
           <div className="p-6">{children}</div>
         </main>
       </div>
